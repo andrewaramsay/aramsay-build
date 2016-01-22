@@ -5,7 +5,7 @@ const Logger = require('./utils/logger');
 const AppHost = require('./utils/host');
 const _ = require('lodash');
 
-class SimpleGulp {
+class SimpleBuild {
   constructor(options) {
     options = options || {};
 
@@ -28,7 +28,7 @@ class SimpleGulp {
   }
 }
 
-SimpleGulp.Logger = Logger;
-SimpleGulp.AppHost = AppHost;
+SimpleBuild.Logger = Logger;
+SimpleBuild.AppHost = AppHost;
 
-module.exports = SimpleGulp;
+module.exports = SimpleBuild;
