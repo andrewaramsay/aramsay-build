@@ -88,7 +88,7 @@ class Logger {
 
 Logger.LEVELS = LEVELS;
 
-Logger._current = new Logger({
+Logger._default = new Logger({
   level: LEVELS.info
 });
 

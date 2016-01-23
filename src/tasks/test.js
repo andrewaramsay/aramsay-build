@@ -1,7 +1,8 @@
 'use strict';
 var mocha = require('gulp-mocha');
 
-module.exports = function (gulp) {
+module.exports = function (simpleBuild) {
+  let gulp = simpleBuild.gulp;
 	gulp.task('test', ['test:server']);
 	gulp.task('test:watch', ['test:server:watch']);
 
@@ -15,4 +16,4 @@ module.exports = function (gulp) {
 	  gulp.watch('./src/server/**/*.js', ['test:server']);
 	});
 
-}
+};

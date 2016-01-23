@@ -28,21 +28,21 @@ class AppHost {
       return;
     }
 
-    Logger._current.debug('Starting Nodemon with options:', self._nodemonOptions);
+    self._logger.debug('Starting Nodemon with options:', self._nodemonOptions);
     return nodemon(self._nodemonOptions)
       .on('start', function () {
-        Logger._current.info('Nodemon started');
+        self._logger.info('Nodemon started');
         self._startBrowserSync();
       })
       .on('restart', function () {
-        Logger._current.info('Nodemon restarting');
+        self._logger.info('Nodemon restarting');
         self._notifyBrowserSyncReload();
       })
       .on('crash', function () {
-        Logger._current.error('Nodemon crashed');
+        self._logger.error('Nodemon crashed');
       })
       .on('exit', function () {
-        Logger._current.info('Nodemon exited cleanly');
+        self._logger.info('Nodemon exited cleanly');
       });
   }
 
@@ -87,7 +87,7 @@ class AppHost {
 
     var hostString = options.server.host || 'http://localhost';
     options.server.proxyRoutes = options.server.proxyRoutes || ['/api'];
-    Logger._current.debug('Proxying API calls to: ', hostString);
+    self._logger.debug('Proxying API calls to: ', hostString);
 
     self._browserSyncOptions.middleware = self._browserSyncOptions.middleware || [];
     self._browserSyncOptions.middleware.push(proxyMiddleware(options.server.proxyRoutes, { target: hostString }));
@@ -96,8 +96,9 @@ class AppHost {
   _configureStatic(options) {
     let self = this;
     self._browserSyncOptions.server = {
-      baseDir: [options.client.path]
+      baseDir: ['.']
     };
+    self._browserSyncOptions.startPath = options.client.path;
   }
 
   _startBrowserSync() {
@@ -105,7 +106,7 @@ class AppHost {
     if (self._browserSync.active) {
       return;
     }
-    Logger._current.debug('Starting BrowserSync with options:', self._browserSyncOptions);
+    self._logger.debug('Starting BrowserSync with options:', self._browserSyncOptions);
     self._browserSync.init(self._browserSyncOptions);
   }
 
@@ -130,9 +131,9 @@ class StaticAppHost extends AppHost {
 
 AppHost.StaticAppHost = StaticAppHost;
 
-AppHost._current = {
+AppHost._default = {
   start: function () {
-    Logger._current.error('You must configure an app host to use the run:server command');
+    this._logger.error('You must configure an app host to use the run:server command');
   }
 };
 
