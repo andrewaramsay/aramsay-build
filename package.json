@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Pre-packaged gulp build, test, and dev tasks",
   "main": "src/simple.build.js",
+  "repository": "andrewaramsay/simple-build",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
