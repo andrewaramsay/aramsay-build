@@ -1,86 +1,84 @@
 'use strict';
 
-const _ = require('lodash');
-const exec = require('child_process').exec;
+const _ = require(`lodash`);
+const exec = require(`child_process`).exec;
 
 
 class OsUtilities {
   runCommand(command) {
     let self = this;
     return function (callback) {
-      self._logger.debug('Running command: ', command);
+      self._logger.debug(`Running command: `, command);
       exec(command, function (err, stdout, stderr) {
         if (err) {
           self._logger.error(err);
-          return callback(err)
+          return callback(err);
         }
 
-        _.forEach(stdout.split('\n'), function (line) {
-          if (line.trim()) {
-            self._logger.info(line);
-          }
-        });
+        self._logOutput(stdout, `info`);
+        self._logOutput(stderr, `warn`);
 
-        _.forEach(stderr.split('\n'), function (line) {
-          if (line.trim()) {
-            self._logger.warn(line);
-          }
-        });
         callback();
       });
-    }
+    };
   }
 
   isServiceRunning(serviceName, callback) {
     let self = this;
-    exec('sc query "' + serviceName + '"', function (err, stdout, stderr) {
+    exec(`sc query "${serviceName}"`, function (err, stdout, stderr) {
       if (err) {
         self._logger.error(err);
-        return callback(err)
+        return callback(err);
       }
 
-      if (_.includes(stdout, 'RUNNING')) {
-        callback(null, true);
-      } else {
-        callback(null, false);
+      self._logOutput(stderr, `warn`);
+
+      if (_.includes(stdout, `RUNNING`)) {
+        return callback(null, true);
       }
+
+      callback(null, false);
     });
   }
 
   startService(serviceName) {
     let self = this;
-    return function startServiceTask(callback) {
-      self.isServiceRunning(serviceName, function (err, isRunning) {
-        if (err) {
-          return callback(err);
-        }
-
-        if (!isRunning) {
-          self.runCommand('net start ' + serviceName)(callback);
-        } else {
-          self._logger.info('The', serviceName, 'service is already running.')
-          callback();
-        }
-      });
-    };
+    return self._toggleService(serviceName, true);
   }
 
   stopService(serviceName) {
     let self = this;
-    return function stopServiceTask(callback) {
+    return self._toggleService(serviceName, false);
+  }
+
+  _toggleService(serviceName, start) {
+    let self = this;
+    return function (callback) {
       self.isServiceRunning(serviceName, function (err, isRunning) {
         if (err) {
           return callback(err);
         }
 
-        if (isRunning) {
-          self.runCommand('net stop ' + serviceName)(callback);
-        } else {
-          self._logger.info('The', serviceName, 'service is already stopped.')
-          callback();
+        let command = start ? `start` : `stop`;
+        let expectedStatus = start ? `running` : `stopped`;
+
+        if (isRunning === start) {
+          self._logger.info(`The ${serviceName} service is already ${expectedStatus}.`);
+          return callback();
         }
+
+        self.runCommand(`net ${command} ${serviceName}`)(callback);
       });
     };
+  }
+
+  _logOutput(streamOutput, logFunc) {
+    let self = this;
+    _.forEach(streamOutput.split(`\n`), function (line) {
+      if (line.trim()) {
+        self._logger[logFunc](line);
+      }
+    });
   }
 }
 

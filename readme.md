@@ -2,8 +2,12 @@
 
 Simple Build is a convention over configuration, opinionated build tool for MEAN stack applications.  It handles all
 the setup and necessary config to utilize various tools for an ideal workflow.  It is largely based on John Papa's
-[Hottowel](https://github.com/johnpapa/generator-hottowel) project, this is just a bundled ready-to-use build tool that can simple be installed and referenced from
-your local gulpfile.
+[Hottowel](https://github.com/johnpapa/generator-hottowel) project, this is just a bundled ready-to-use build tool that
+can simply be installed and referenced from your local gulpfile.  The value of this over a generator is maintainability;
+this tool can be used in multiple projects and updates can be applied with a simple `npm install`.
+
+*disclaimer* this project is primarily written to make my life easier.  It is built around my preferred structure of
+MEAN stack applications, and may lack configuration options necessary for use in a different context.
 
 
 

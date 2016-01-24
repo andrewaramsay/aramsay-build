@@ -1,19 +1,20 @@
 'use strict';
-var mocha = require('gulp-mocha');
+const mocha = require(`gulp-mocha`);
 
 module.exports = function (simpleBuild) {
-  let gulp = simpleBuild.gulp;
-	gulp.task('test', ['test:server']);
-	gulp.task('test:watch', ['test:server:watch']);
+  const gulp = simpleBuild.gulp;
+
+  gulp.task(`test`, [`test:server`]);
+  gulp.task(`test:watch`, [`test:server:watch`]);
 
 
-	gulp.task('test:server', function () {
-	  return gulp.src('./src/server/**/*.spec.js', { read: false })
-		.pipe(mocha({ reporter: 'spec' }));
-	});
+  gulp.task(`test:server`, function () {
+    return gulp.src(`./src/server/**/*.spec.js`, { read: false })
+      .pipe(mocha({ reporter: `spec` }));
+  });
 
-	gulp.task('test:server:watch', ['test:server'], function () {
-	  gulp.watch('./src/server/**/*.js', ['test:server']);
-	});
+  gulp.task(`test:server:watch`, [`test:server`], function () {
+    gulp.watch(`./src/server/**/*.js`, [`test:server`]);
+  });
 
 };

@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "./lint/common.js",
+    "./lint/server.js"
+  ],
+  "root": true
+}
