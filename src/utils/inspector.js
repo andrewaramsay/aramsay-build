@@ -1,8 +1,8 @@
 'use strict';
 
-const _ = require(`lodash`);
-const eslint = require(`gulp-eslint`);
-const path = require(`path`);
+const _ = require('lodash');
+const eslint = require('gulp-eslint');
+const path = require('path');
 
 class Inspector {
   constructor(options) {
@@ -15,12 +15,12 @@ class Inspector {
     let sourceArray = [].concat(options.source);
 
     sourceArray = _.map(sourceArray, function (source) {
-      return path.join(source, `**/*.js`);
+      return path.join(source, '**/*.js');
     });
 
     self._lintFiles = [
       ...sourceArray,
-      `!node_modules/**`
+      '!node_modules/**'
     ];
   }
 
@@ -29,13 +29,13 @@ class Inspector {
     const gulp = self._gulp;
 
 
-    self._logger.debug(`Linting the following files: ${self._lintFiles}`);
+    self._logger.debug('Linting the following files: ', self._lintFiles);
     return gulp.src(self._lintFiles)
       .pipe(eslint())
       .pipe(eslint.format());
   }
 }
 
-Inspector._default = new Inspector({ source: `` });
+Inspector._default = new Inspector({ source: '' });
 
 module.exports = Inspector;

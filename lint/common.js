@@ -18,8 +18,8 @@ const MIN_VARIABLE_NAME_LENGTH = 3;
 
 module.exports = {
   rules: {
-    'comma-dangle': [2, `never`],
-    'no-cond-assign': [2, `always`],
+    'comma-dangle': [2, 'never'],
+    'no-cond-assign': [2, 'always'],
     'no-console': 2,
     'no-constant-condition': 2,
     'no-control-regex': 2,
@@ -31,10 +31,10 @@ module.exports = {
     'no-empty': 2,
     'no-ex-assign': 2,
     'no-extra-boolean-cast': 2,
-    'no-extra-parens': [2, `functions`],
+    'no-extra-parens': [2, 'functions'],
     'no-extra-semi': 2,
     'no-func-assign': 2,
-    'no-inner-declarations': [2, `both`],
+    'no-inner-declarations': [2, 'both'],
     'no-invalid-regexp': 2,
     'no-irregular-whitespace': 2,
     'no-negated-in-lhs': 2,
@@ -47,7 +47,7 @@ module.exports = {
     'valid-jsdoc': [2, {
       requireReturn: false,
       prefer: {
-        return: `returns`
+        return: 'returns'
       }
     }],
     'valid-typeof': 2,
@@ -55,9 +55,9 @@ module.exports = {
     // 'block-scoped-var': 2, // using no-var for ES6.  See what to do about browser code
     complexity: [1, MAX_CYCLOMATIC_COMPLEXITY],
     'consistent-return': 2,
-    curly: [2, `all`],
+    curly: [2, 'all'],
     'default-case': 2,
-    'dot-location': [2, `property`],
+    'dot-location': [2, 'property'],
     'dot-notation': 2,
     eqeqeq: 2,
     'guard-for-in': 2,
@@ -98,7 +98,7 @@ module.exports = {
     'no-process-env': 2,
     'no-proto': 2,
     'no-redeclare': [2, { builtinGlobals: true }],
-    'no-return-assign': [2, `always`],
+    'no-return-assign': [2, 'always'],
     'no-script-url': 2,
     'no-self-compare': 2,
     'no-sequences': 2,
@@ -108,42 +108,42 @@ module.exports = {
     'no-useless-concat': 2,
     'no-void': 2,
     'no-with': 2,
-    radix: [2, `as-needed`],
-    'wrap-iife': [2, `outside`],
-    yoda: [2, `never`],
-    strict: [2, `global`],
-    'init-declarations': [2, `always`],
+    radix: [2, 'as-needed'],
+    'wrap-iife': [2, 'outside'],
+    yoda: [2, 'never'],
+    strict: [2, 'global'],
+    'init-declarations': [2, 'always'],
     'no-catch-shadow': 2,
     'no-delete-var': 2,
     'no-label-var': 2,
     'no-shadow-restricted-names': 2,
     'no-shadow': [2, {
       builtinGlobals: true,
-      hoist: `all`
+      hoist: 'all'
     }],
     'no-undef': [2, { typeof: true }],
     'no-unused-vars': [2, {
-      vars: `all`,
-      args: `after-used`,
+      vars: 'all',
+      args: 'after-used',
       // Allow an unused variable to contain the word 'ignored' for ignoring destructured positional elements
-      varsIgnorePattern: `[iI]gnored`
+      varsIgnorePattern: '[iI]gnored'
     }],
-    'no-use-before-define': [2, `nofunc`],
+    'no-use-before-define': [2, 'nofunc'],
 
     // Stylistic rules
-    'array-bracket-spacing': [2, `never`],
-    'block-spacing': [2, `always`],
-    'brace-style': [2, `1tbs`, {
+    'array-bracket-spacing': [2, 'never'],
+    'block-spacing': [2, 'always'],
+    'brace-style': [2, '1tbs', {
       allowSingleLine: false
     }],
-    camelcase: [2, { properties: `always` }],
+    camelcase: [2, { properties: 'always' }],
     'comma-spacing': [2, { before: false, after: true }],
-    'comma-style': [2, `last`],
-    'computed-property-spacing': [2, `never`],
-    'consistent-this': [2, `self`],
+    'comma-style': [2, 'last'],
+    'computed-property-spacing': [2, 'never'],
+    'consistent-this': [2, 'self'],
     'eol-last': 2,
-    'func-style': [2, `declaration`, { allowArrowFunctions: true }],
-    'id-length': [2, { min: MIN_VARIABLE_NAME_LENGTH, exceptions: [`id`, `_`, `$`, `Q`, `q`, `$q`, `ko`, `on`, `ui`, `fs`] }],
+    'func-style': [2, 'declaration', { allowArrowFunctions: true }],
+    'id-length': [2, { min: MIN_VARIABLE_NAME_LENGTH, exceptions: ['id', '_', '$', 'Q', 'q', '$q', 'ko', 'on', 'ui', 'fs'] }],
     indent: [2, 2, {
       VariableDeclarator: { var: ALLOWED_SPACES_FOR_VAR, let: ALLOWED_SPACES_FOR_LET, const: ALLOWED_SPACES_FOR_CONST },
       SwitchCase: 1
@@ -151,9 +151,9 @@ module.exports = {
     'key-spacing': [2, {
       beforeColon: false,
       afterColon: true,
-      mode: `strict`
+      mode: 'strict'
     }],
-    'linebreak-style': [2, `unix`],
+    'linebreak-style': [2, 'unix'],
     'max-depth': [1, MAX_CONDITIONAL_DEPTH],
     'max-len': [2, MAX_LINE_LENGTH, TAB_WIDTH, { ignoreUrls: true }],
     'max-nested-callbacks': [1, MAX_CALLBACK_DEPTH],
@@ -170,24 +170,24 @@ module.exports = {
     'no-nested-ternary': 2,
     'no-new-object': 2,
     'no-plusplus': 2,
-    'no-restricted-syntax': [2, `WithStatement`, `LabeledStatement`, `SwitchStatement`, `SwitchCase`],
+    'no-restricted-syntax': [2, 'WithStatement', 'LabeledStatement', 'SwitchStatement', 'SwitchCase'],
     'no-spaced-func': 2,
     'no-trailing-spaces': 2,
     // I'd like an end-only no-underscore-dangle rule.  I like to use _foo for private, but want to restrict bar_
     'no-unneeded-ternary': 2,
-    'object-curly-spacing': [2, `always`],
-    'one-var': [2, `never`],
-    'operator-assignment': [2, `always`],
-    'operator-linebreak': [2, `before`],
-    'quote-props': [2, `as-needed`],
-    quotes: [2, `backtick`, `avoid-escape`],
+    'object-curly-spacing': [2, 'always'],
+    'one-var': [2, 'never'],
+    'operator-assignment': [2, 'always'],
+    'operator-linebreak': [2, 'before'],
+    'quote-props': [2, 'as-needed'],
+    quotes: [2, 'single', 'avoid-escape'],
     'semi-spacing': [2, { before: false, after: true }],
     semi: 2,
-    'space-after-keywords': [2, `always`],
-    'space-before-blocks': [2, `always`],
-    'space-before-function-paren': [2, { anonymous: `always`, named: `never` }],
-    'space-before-keywords': [2, `always`],
-    'space-in-parens': [2, `never`],
+    'space-after-keywords': [2, 'always'],
+    'space-before-blocks': [2, 'always'],
+    'space-before-function-paren': [2, { anonymous: 'always', named: 'never' }],
+    'space-before-keywords': [2, 'always'],
+    'space-in-parens': [2, 'never'],
     'space-infix-ops': 2,
     'space-return-throw-case': 2,
     'space-unary-ops': [2, { words: true, nonwords: false }],

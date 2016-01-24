@@ -8,4 +8,4 @@ let simpleBuild = new SimpleBuild({
   logger: new Logger({ level: Logger.Levels.debug })
 }, gulp);
 
-require(`./src/tasks/quality`)(simpleBuild);
+require('./src/tasks/lint')(simpleBuild);

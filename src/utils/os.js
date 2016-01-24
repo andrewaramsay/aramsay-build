@@ -1,22 +1,22 @@
 'use strict';
 
-const _ = require(`lodash`);
-const exec = require(`child_process`).exec;
+const _ = require('lodash');
+const exec = require('child_process').exec;
 
 
 class OsUtilities {
   runCommand(command) {
     let self = this;
     return function (callback) {
-      self._logger.debug(`Running command: `, command);
+      self._logger.debug(`Running command: ${command}`);
       exec(command, function (err, stdout, stderr) {
         if (err) {
           self._logger.error(err);
           return callback(err);
         }
 
-        self._logOutput(stdout, `info`);
-        self._logOutput(stderr, `warn`);
+        self._logOutput(stdout, 'info');
+        self._logOutput(stderr, 'warn');
 
         callback();
       });
@@ -31,9 +31,9 @@ class OsUtilities {
         return callback(err);
       }
 
-      self._logOutput(stderr, `warn`);
+      self._logOutput(stderr, 'warn');
 
-      if (_.includes(stdout, `RUNNING`)) {
+      if (_.includes(stdout, 'RUNNING')) {
         return callback(null, true);
       }
 
@@ -59,8 +59,8 @@ class OsUtilities {
           return callback(err);
         }
 
-        let command = start ? `start` : `stop`;
-        let expectedStatus = start ? `running` : `stopped`;
+        let command = start ? 'start' : 'stop';
+        let expectedStatus = start ? 'running' : 'stopped';
 
         if (isRunning === start) {
           self._logger.info(`The ${serviceName} service is already ${expectedStatus}.`);
@@ -74,7 +74,7 @@ class OsUtilities {
 
   _logOutput(streamOutput, logFunc) {
     let self = this;
-    _.forEach(streamOutput.split(`\n`), function (line) {
+    _.forEach(streamOutput.split('\n'), function (line) {
       if (line.trim()) {
         self._logger[logFunc](line);
       }

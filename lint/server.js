@@ -7,10 +7,10 @@ module.exports = {
     mocha: true
   },
   rules: {
-    strict: [2, `global`],
+    strict: [2, 'global'],
     'callback-return': 2,
     'global-require': 2,
-    'handle-callback-err': [2, `^.*(e|E)rr`],
+    'handle-callback-err': [2, '^.*(e|E)rr'],
     'no-mixed-requires': 2,
     'no-new-require': 2,
     'no-path-concat': 2,
@@ -18,14 +18,14 @@ module.exports = {
     'no-sync': 2,
     'no-shadow': [2, {
       builtinGlobals: true,
-      hoist: `all`,
+      hoist: 'all',
       // Allow nested node callbacks to re-use the variable err
-      allow: [`err`]
+      allow: ['err']
     }],
 
     // Begin ES6 stuff
-    'arrow-body-style': [2, `as-needed`],
-    'arrow-parens': [2, `as-needed`],
+    'arrow-body-style': [2, 'as-needed'],
+    'arrow-parens': [2, 'as-needed'],
     'arrow-spacing': [2, { before: true, after: true }],
     'constructor-super': 2,
     'generator-star-spacing': [2, { before: false, after: true }],

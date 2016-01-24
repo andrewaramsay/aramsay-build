@@ -1,8 +1,8 @@
 'use strict';
 
-const _ = require(`lodash`);
-const moment = require(`moment`);
-const chalk = require(`chalk`);
+const _ = require('lodash');
+const moment = require('moment');
+const chalk = require('chalk');
 
 const DEBUG = 1;
 const INFO = 2;
@@ -43,19 +43,19 @@ class Logger {
   }
 
   debug(...messages) {
-    this._writeMessage(DEBUG, chalk.green(`DEBUG`), ...messages);
+    this._writeMessage(DEBUG, chalk.green('DEBUG'), ...messages);
   }
 
   info(...messages) {
-    this._writeMessage(INFO, chalk.blue(`INFO`), ...messages);
+    this._writeMessage(INFO, chalk.blue('INFO'), ...messages);
   }
 
   warn(...messages) {
-    this._writeMessage(WARN, chalk.yellow(`WARN`), ...messages);
+    this._writeMessage(WARN, chalk.yellow('WARN'), ...messages);
   }
 
   error(...messages) {
-    this._writeMessage(ERROR, chalk.red(`ERROR`), ...messages);
+    this._writeMessage(ERROR, chalk.red('ERROR'), ...messages);
   }
 
   _checkLevel(levelNumber) {
@@ -75,13 +75,13 @@ class Logger {
       }
 
       return _.trim(msg);
-    }).join(` `);
+    }).join(' ');
 
-    let message = chalk.white(`[`)
+    let message = chalk.white('[')
       + chalk.gray(self._timestamp())
-      + chalk.white(`] [`)
+      + chalk.white('] [')
       + status
-      + chalk.white(`] `)
+      + chalk.white('] ')
       + chalk.white(messageContent);
 
     /* eslint no-console: 0 */
@@ -89,7 +89,7 @@ class Logger {
   }
 
   _timestamp() {
-    return moment().format(`HH:mm:ss`);
+    return moment().format('HH:mm:ss');
   }
 }
 

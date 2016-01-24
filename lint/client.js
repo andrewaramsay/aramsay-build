@@ -9,7 +9,6 @@ module.exports = {
     angular: false
   },
   rules: {
-    quotes: [2, `single`, `avoid-escape`],
-    strict: [2, `function`]
+    strict: [2, 'function']
   }
 };
