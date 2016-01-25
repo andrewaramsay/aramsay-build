@@ -66,6 +66,7 @@ class AppHost {
 
   _setBrowserSyncOptions(options) {
     const self = this;
+
     self._browsersyncOptions = {
       ui: false,
       files: [options.client.path],

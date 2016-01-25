@@ -28,10 +28,12 @@ class Inspector {
     const self = this;
     const gulp = self._gulp;
 
+    let rulesPath = path.join(__dirname, '../rules/');
 
+    console.log(rulesPath);
     self._logger.debug('Linting the following files: ', self._lintFiles);
     return gulp.src(self._lintFiles)
-      .pipe(eslint())
+      .pipe(eslint({ rulePaths: [rulesPath] }))
       .pipe(eslint.format());
   }
 }

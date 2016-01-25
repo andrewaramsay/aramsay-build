@@ -32,8 +32,6 @@ not need to host static client code.
 
 
 # TODO
-* linting
-	* custom eslint plugins & settings??
 * plato? - what is this from hottowel?
 * sass -> less
 	* `build:wiredep` support to add compiled css to index.html
@@ -49,5 +47,4 @@ not need to host static client code.
 	* server specs, get to be configured, currently hard coded from my old gulpfile
 
 * `build:bundle` overall add more optimizations (minification, etc)
-	* gulp-rev and gulp-rev-replace
 * *bump* task to bump version numbers

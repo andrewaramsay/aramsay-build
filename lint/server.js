@@ -39,6 +39,7 @@ module.exports = {
     'prefer-reflect': 2,
     'prefer-spread': 2,
     'prefer-template': 2,
-    'require-yield': 2
+    'require-yield': 2,
+    'require-authenticate': 2
   }
 };

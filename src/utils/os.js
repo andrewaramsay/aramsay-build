@@ -6,7 +6,7 @@ const exec = require('child_process').exec;
 
 class OsUtilities {
   runCommand(command) {
-    let self = this;
+    const self = this;
     return function (callback) {
       self._logger.debug(`Running command: ${command}`);
       exec(command, function (err, stdout, stderr) {
@@ -24,7 +24,7 @@ class OsUtilities {
   }
 
   isServiceRunning(serviceName, callback) {
-    let self = this;
+    const self = this;
     exec(`sc query "${serviceName}"`, function (err, stdout, stderr) {
       if (err) {
         self._logger.error(err);
@@ -42,17 +42,17 @@ class OsUtilities {
   }
 
   startService(serviceName) {
-    let self = this;
+    const self = this;
     return self._toggleService(serviceName, true);
   }
 
   stopService(serviceName) {
-    let self = this;
+    const self = this;
     return self._toggleService(serviceName, false);
   }
 
   _toggleService(serviceName, start) {
-    let self = this;
+    const self = this;
     return function (callback) {
       self.isServiceRunning(serviceName, function (err, isRunning) {
         if (err) {
@@ -73,7 +73,7 @@ class OsUtilities {
   }
 
   _logOutput(streamOutput, logFunc) {
-    let self = this;
+    const self = this;
     _.forEach(streamOutput.split('\n'), function (line) {
       if (line.trim()) {
         self._logger[logFunc](line);
