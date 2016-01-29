@@ -143,7 +143,7 @@ module.exports = {
     'consistent-this': [2, 'self'],
     'eol-last': 2,
     'func-style': [2, 'declaration', { allowArrowFunctions: true }],
-    'id-length': [2, { min: MIN_VARIABLE_NAME_LENGTH, exceptions: ['id', '_', '$', 'Q', 'q', '$q', 'ko', 'on', 'ui', 'fs'] }],
+    'id-length': [2, { min: MIN_VARIABLE_NAME_LENGTH, exceptions: ['id', '_', '$', 'Q', 'q', '$q', 'ko', 'on', 'ui', 'fs', 'cb'] }],
     indent: [2, 2, {
       VariableDeclarator: { var: ALLOWED_SPACES_FOR_VAR, let: ALLOWED_SPACES_FOR_LET, const: ALLOWED_SPACES_FOR_CONST },
       SwitchCase: 1
