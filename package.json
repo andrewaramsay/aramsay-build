@@ -1,6 +1,6 @@
 {
   "name": "simple-build",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pre-packaged gulp build, test, and dev tasks",
   "main": "src/simple.build.js",
   "repository": "andrewaramsay/simple-build",
