@@ -1,5 +1,5 @@
 {
-  "name": "simple-build",
+  "name": "aramsay-build",
   "version": "1.0.1",
   "description": "Pre-packaged gulp build, test, and dev tasks",
   "main": "src/simple.build.js",
