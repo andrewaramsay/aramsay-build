@@ -1,9 +1,11 @@
 'use strict';
 
-const nodemon = require('gulp-nodemon');
-const path = require('path');
+const _ = require('lodash');
 const browserSync = require('browser-sync');
+const fs = require('fs');
+const nodemon = require('gulp-nodemon');
 const proxyMiddleware = require('http-proxy-middleware');
+const path = require('path');
 
 const DEFAULT_BROWSER_SYNC_DELAY = 3000;
 
@@ -16,7 +18,65 @@ class AppHost {
     self.options = options;
   }
 
+  _splitEnvironmentFile(content) {
+    let config = {};
+    let currentString = '';
+    let currentKey = '';
+    let insideQuotes = false;
+
+    _.forEach(content, function (char) {
+      if (char === '=') {
+        currentKey = currentString;
+        currentString = '';
+      } else if (char === '"') {
+        insideQuotes = !insideQuotes;
+      } else if (char === '\n' && !insideQuotes) {
+        config[currentKey] = currentString;
+        currentString = '';
+      } else {
+        currentString += char;
+      }
+    });
+
+    if (currentString && currentKey) {
+      config[currentKey] = currentString;
+    }
+
+    return config;
+  }
+
   start() {
+    const self = this;
+    let envFile = path.join(process.cwd(), '.env');
+
+    fs.exists(envFile, function (exists) {
+      if (!exists) {
+        return self._startServers();
+      }
+
+      fs.readFile(envFile, 'utf8', function (err, content) {
+        if (err) {
+          throw err;
+        }
+
+        let config = self._splitEnvironmentFile(content);
+
+        _.forEach(config, function (value, key) {
+          if (!key || !value) {
+            return;
+          }
+
+          /* eslint no-process-env: 0 */
+          process.env[key] = value;
+        });
+
+        self._startServers();
+
+      });
+    });
+  }
+
+  _startServers() {
     const self = this;
 
     self._browsersync = browserSync.create();
@@ -47,7 +107,6 @@ class AppHost {
         self._logger.info('Nodemon exited cleanly');
       });
   }
-
 
   _setNodemonOptions(options) {
     const self = this;

@@ -9,7 +9,7 @@
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = function (context) {
+module.exports = function (ruleContext) {
 
   return {
     CallExpression(node) {
@@ -46,7 +46,7 @@ module.exports = function (context) {
       });
 
       if (!foundAuthenticate) {
-        context.report({
+        ruleContext.report({
           message: "No implicit anonymous access: use authenticate('anonymous') or specify strategy.",
           node
         });

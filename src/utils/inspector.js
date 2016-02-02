@@ -30,7 +30,6 @@ class Inspector {
 
     let rulesPath = path.join(__dirname, '../rules/');
 
-    console.log(rulesPath);
     self._logger.debug('Linting the following files: ', self._lintFiles);
     return gulp.src(self._lintFiles)
       .pipe(eslint({ rulePaths: [rulesPath] }))
